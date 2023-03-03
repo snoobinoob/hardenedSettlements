@@ -1,4 +1,4 @@
-package antiBomb.extraSettlement;
+package hardenedSettlements.extraSettlement;
 
 import necesse.engine.network.Packet;
 import necesse.engine.network.PacketWriter;

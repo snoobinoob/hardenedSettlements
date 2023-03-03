@@ -1,6 +1,6 @@
-package antiBomb.patch;
+package hardenedSettlements.patch;
 
-import antiBomb.extraSettlement.ExtraSettlementLevelData;
+import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.engine.network.server.ServerClient;
 import necesse.level.gameObject.GameObject;

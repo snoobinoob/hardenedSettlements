@@ -1,4 +1,4 @@
-package antiBomb.extraSettlement;
+package hardenedSettlements.extraSettlement;
 
 import necesse.engine.save.LoadData;
 import necesse.engine.save.SaveData;

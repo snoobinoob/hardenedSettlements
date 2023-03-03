@@ -1,7 +1,7 @@
-package antiBomb.patch;
+package hardenedSettlements.patch;
 
-import antiBomb.extraSettlement.ExtraSettlementContainer;
-import antiBomb.form.ExplosionToggleButton;
+import hardenedSettlements.extraSettlement.ExtraSettlementContainer;
+import hardenedSettlements.form.ExplosionToggleButton;
 import necesse.engine.localization.message.LocalMessage;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.gfx.forms.Form;

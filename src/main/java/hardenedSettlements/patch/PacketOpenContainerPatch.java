@@ -1,6 +1,6 @@
-package antiBomb.patch;
+package hardenedSettlements.patch;
 
-import antiBomb.AntiBomb;
+import hardenedSettlements.HardenedSettlements;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.engine.network.Packet;
 import necesse.engine.network.packet.PacketOpenContainer;
@@ -17,7 +17,7 @@ public class PacketOpenContainerPatch {
         public static void onEnter(@Advice.Argument(value = 0, readOnly = false,
                 typing = Typing.DYNAMIC) int containerID) {
             if (containerID == ContainerRegistry.SETTLEMENT_CONTAINER) {
-                containerID = AntiBomb.EXTRA_SETTLEMENT_CONTAINER;
+                containerID = HardenedSettlements.EXTRA_SETTLEMENT_CONTAINER;
             }
         }
     }

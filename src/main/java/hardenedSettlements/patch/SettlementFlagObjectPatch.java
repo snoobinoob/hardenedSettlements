@@ -1,6 +1,6 @@
-package antiBomb.patch;
+package hardenedSettlements.patch;
 
-import antiBomb.extraSettlement.ExtraSettlementFlagObjectEntity;
+import hardenedSettlements.extraSettlement.ExtraSettlementFlagObjectEntity;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.entity.objectEntity.ObjectEntity;
 import necesse.level.gameObject.SettlementFlagObject;

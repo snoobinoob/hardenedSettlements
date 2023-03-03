@@ -1,8 +1,8 @@
-package antiBomb;
+package hardenedSettlements;
 
-import antiBomb.event.SetExplosionDamageEvent;
-import antiBomb.extraSettlement.ExtraSettlementContainer;
-import antiBomb.extraSettlement.ExtraSettlementLevelData;
+import hardenedSettlements.event.SetExplosionDamageEvent;
+import hardenedSettlements.extraSettlement.ExtraSettlementContainer;
+import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.ContainerRegistry;
 import necesse.engine.registries.LevelDataRegistry;
@@ -10,7 +10,7 @@ import necesse.gfx.forms.presets.containerComponent.settlement.SettlementContain
 import necesse.inventory.container.events.ContainerEventRegistry;
 
 @ModEntry
-public class AntiBomb {
+public class HardenedSettlements {
     public static int EXTRA_SETTLEMENT_CONTAINER;
 
     public void init() {

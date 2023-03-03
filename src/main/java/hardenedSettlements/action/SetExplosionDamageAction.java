@@ -1,8 +1,8 @@
-package antiBomb.action;
+package hardenedSettlements.action;
 
-import antiBomb.event.SetExplosionDamageEvent;
-import antiBomb.extraSettlement.ExtraSettlementContainer;
-import antiBomb.extraSettlement.ExtraSettlementLevelData;
+import hardenedSettlements.event.SetExplosionDamageEvent;
+import hardenedSettlements.extraSettlement.ExtraSettlementContainer;
+import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
 import necesse.engine.network.Packet;
 import necesse.engine.network.PacketReader;
 import necesse.engine.network.PacketWriter;
