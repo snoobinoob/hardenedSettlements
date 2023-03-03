@@ -1,0 +1,4 @@
+[ui]
+defendzoneexplosiondamage=Explosions within defend zone:
+defendzoneexplosionson=Explosions will damage objects
+defendzoneexplosionsoff=Explosions will not damage objects
