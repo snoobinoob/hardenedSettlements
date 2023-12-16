@@ -1,5 +1,6 @@
 package hardenedSettlements.patch;
 
+import hardenedSettlements.HardenedSettlements;
 import hardenedSettlements.extraSettlement.ExtraSettlementFlagObjectEntity;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.entity.objectEntity.ObjectEntity;
@@ -15,7 +16,9 @@ public class SettlementFlagObjectPatch {
         @Advice.OnMethodExit()
         public static void onEnter(@Advice.AllArguments() Object[] args,
                 @Advice.Return(readOnly = false, typing = Typing.DYNAMIC) ObjectEntity oe) {
-            oe = new ExtraSettlementFlagObjectEntity((Level) args[0], (int) args[1], (int) args[2]);
+            if (HardenedSettlements.isActive) {
+                oe = new ExtraSettlementFlagObjectEntity((Level) args[0], (int) args[1], (int) args[2]);
+            }
         }
     }
 }

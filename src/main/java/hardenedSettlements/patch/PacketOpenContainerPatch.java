@@ -16,7 +16,7 @@ public class PacketOpenContainerPatch {
         @Advice.OnMethodEnter
         public static void onEnter(@Advice.Argument(value = 0, readOnly = false,
                 typing = Typing.DYNAMIC) int containerID) {
-            if (containerID == ContainerRegistry.SETTLEMENT_CONTAINER) {
+            if (HardenedSettlements.isActive && containerID == ContainerRegistry.SETTLEMENT_CONTAINER) {
                 containerID = HardenedSettlements.EXTRA_SETTLEMENT_CONTAINER;
             }
         }

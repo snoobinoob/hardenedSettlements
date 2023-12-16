@@ -1,5 +1,6 @@
 package hardenedSettlements.patch;
 
+import hardenedSettlements.HardenedSettlements;
 import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.engine.network.server.ServerClient;
@@ -13,6 +14,10 @@ public class GameTilePatch {
     public static class DoExplosionDamagePatch {
         @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class)
         public static boolean onExit(@Advice.AllArguments Object[] args) {
+            if (!HardenedSettlements.isActive) {
+                return false;
+            }
+
             Level level = (Level) args[0];
             int x = (int) args[1];
             int y = (int) args[2];

@@ -1,5 +1,6 @@
 package hardenedSettlements.patch;
 
+import hardenedSettlements.HardenedSettlements;
 import hardenedSettlements.extraSettlement.ExtraSettlementContainer;
 import hardenedSettlements.form.ExplosionToggleButton;
 import necesse.engine.localization.message.LocalMessage;
@@ -20,6 +21,10 @@ public class SettlementSettingsFormPatch {
         @Advice.OnMethodExit
         public static void onExit(@Advice.This SettlementSettingsForm<?> thiz,
                 @Advice.FieldValue("settings") Form settings) {
+            if (!HardenedSettlements.isActive) {
+                return;
+            }
+
             for (FormComponent comp : settings.getComponents()) {
                 if (comp.getBoundingBox().y == 165) {
                     ((FormLocalLabel) comp).setPosition(5, 205);
