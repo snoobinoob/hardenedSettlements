@@ -28,7 +28,6 @@ public class HardenedSettlements {
 
     public void init() {
         isActive = ModLoader.getEnabledMods().stream().noneMatch(mod -> mod.isEnabled() && conflictingModIDs.contains(mod.id));
-        GameLog.out.println("isActive: " + isActive);
         if (!isActive) {
             return;
         }

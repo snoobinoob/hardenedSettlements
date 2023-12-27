@@ -22,7 +22,7 @@ public class ExtraSettlementLevelData extends SettlementLevelData {
     }
 
     public static ExtraSettlementLevelData getDataCreateIfNoneExist(Level level) {
-        if (!level.isServerLevel()) {
+        if (!level.isServer()) {
             throw new IllegalArgumentException("Level must be server level");
         } else {
             ExtraSettlementLevelData settlementData = getData(level);
