@@ -1,11 +1,12 @@
 package hardenedSettlements.patch;
 
 import hardenedSettlements.HardenedSettlements;
-import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
+import hardenedSettlements.leveldata.HardenedSettlementsLevelData;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.engine.network.server.ServerClient;
 import necesse.level.gameObject.GameObject;
 import necesse.level.maps.Level;
+import necesse.level.maps.levelData.settlementData.SettlementLevelData;
 import net.bytebuddy.asm.Advice;
 
 public class GameObjectPatch {
@@ -21,10 +22,10 @@ public class GameObjectPatch {
             Level level = (Level) args[0];
             int x = (int) args[1];
             int y = (int) args[2];
-            ExtraSettlementLevelData data = ExtraSettlementLevelData.getData(level);
-            if (level.settlementLayer.isActive() && !data.doExplosionDamage
-                    && data.getDefendZone().containsTile(x, y)) {
-                return true;
+            SettlementLevelData settlementData = SettlementLevelData.getSettlementData(level);
+            if (level.settlementLayer.isActive() && settlementData.getDefendZone().containsTile(x, y)) {
+                HardenedSettlementsLevelData data = HardenedSettlementsLevelData.getDataCreateIfNoneExist(level);
+                return !data.doExplosionDamage;
             }
             return false;
         }

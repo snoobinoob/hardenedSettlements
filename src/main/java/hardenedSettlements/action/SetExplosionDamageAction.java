@@ -1,31 +1,26 @@
 package hardenedSettlements.action;
 
 import hardenedSettlements.event.SetExplosionDamageEvent;
-import hardenedSettlements.extraSettlement.ExtraSettlementContainer;
-import hardenedSettlements.extraSettlement.ExtraSettlementLevelData;
-import necesse.engine.network.Packet;
-import necesse.engine.network.PacketReader;
-import necesse.engine.network.PacketWriter;
-import necesse.engine.network.server.ServerClient;
-import necesse.inventory.container.settlement.actions.SettlementAccessRequiredContainerCustomAction;
-import necesse.level.maps.levelData.settlementData.SettlementLevelData;
+import hardenedSettlements.leveldata.HardenedSettlementsLevelData;
+import necesse.inventory.container.customAction.BooleanCustomAction;
+import necesse.inventory.container.settlement.SettlementContainer;
+import necesse.level.maps.Level;
 
-public class SetExplosionDamageAction extends SettlementAccessRequiredContainerCustomAction {
-    public SetExplosionDamageAction(ExtraSettlementContainer container) {
-        super(container);
-    }
+public class SetExplosionDamageAction extends BooleanCustomAction {
+    private final SettlementContainer container;
 
-    public void runAndSend(boolean doExplosionDamage) {
-        Packet content = new Packet();
-        PacketWriter writer = new PacketWriter(content);
-        writer.putNextBoolean(doExplosionDamage);
-        runAndSendAction(content);
+    public SetExplosionDamageAction(SettlementContainer container) {
+        this.container = container;
     }
 
     @Override
-    public void executePacket(PacketReader reader, SettlementLevelData data, ServerClient client) {
-        ExtraSettlementLevelData extraData = (ExtraSettlementLevelData) data;
-        extraData.doExplosionDamage = reader.getNextBoolean();
-        extraData.sendEvent(SetExplosionDamageEvent.class);
+    protected void run(boolean doExplosionDamage) {
+        if (!container.client.isServer()) {
+            return;
+        }
+        Level level = container.getLevelData().getLevel();
+        HardenedSettlementsLevelData levelData = HardenedSettlementsLevelData.getDataCreateIfNoneExist(level);
+        levelData.doExplosionDamage = doExplosionDamage;
+        new SetExplosionDamageEvent(doExplosionDamage).applyAndSendToClientsAt(level);
     }
 }
