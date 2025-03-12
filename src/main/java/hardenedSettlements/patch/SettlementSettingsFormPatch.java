@@ -1,6 +1,5 @@
 package hardenedSettlements.patch;
 
-import hardenedSettlements.HardenedSettlements;
 import hardenedSettlements.form.ExplosionToggleButton;
 import necesse.engine.localization.message.LocalMessage;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
@@ -30,21 +29,17 @@ public class SettlementSettingsFormPatch {
     public static class UpdatePatch {
         @Advice.OnMethodExit
         public static void onExit(
-                @Advice.This SettlementSettingsForm<?> thiz,
-                @Advice.FieldValue("settings") Form settings
+            @Advice.This SettlementSettingsForm<?> thiz,
+            @Advice.FieldValue("settings") Form settings
         ) {
-            if (!HardenedSettlements.isActive) {
-                return;
-            }
-
             for (FormComponent comp : settings.getComponents()) {
                 if (comp.getBoundingBox().y == 165) {
                     ((FormLocalLabel) comp).setPosition(5, 205);
                 }
             }
             FormLocalLabel damageLabel = settings.addComponent(
-                    new FormLocalLabel(new LocalMessage("ui", "defendzoneexplosiondamage"),
-                            new FontOptions(16), FormLabel.ALIGN_LEFT, 40, 165));
+                new FormLocalLabel(new LocalMessage("ui", "defendzoneexplosiondamage"),
+                    new FontOptions(16), FormLabel.ALIGN_LEFT, 40, 165));
             int x = (int) damageLabel.getBoundingBox().getMaxX();
             boolean prevSetting = button != null && button.isToggled();
             button = settings.addComponent(new ExplosionToggleButton(thiz.container, x + 5, 161));
